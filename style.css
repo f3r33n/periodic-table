@@ -158,8 +158,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(10, 10, 26, 0.8);
-    backdrop-filter: blur(10px);
+ background: rgba(255,255,255,0.8);
+     backdrop-filter: blur(10px);
     z-index: 100;
     display: flex;
     justify-content: space-between;
@@ -236,6 +236,15 @@ body {
 .mobile-menu-toggle {
     display: none;
 }
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
 
 /* Hero Section */
 .hero-section {
@@ -443,6 +452,16 @@ h2 {
     justify-content: center;
     margin: 0 auto;
     position: relative;
+}
+@media (max-width: 768px) {
+    .periodic-table-grid {
+        grid-template-columns: repeat(9, minmax(40px, 1fr));
+    }
+}
+@media (max-width: 480px) {
+    .periodic-table-grid {
+        grid-template-columns: repeat(5, minmax(35px, 1fr));
+    }
 }
 
 .element-cell {
@@ -1160,4 +1179,32 @@ h2 {
 }
 .hidden {
     display: none !important;
+}
+
+/* For the color version */
+.element-cell {
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.trends-legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.legend-gradient {
+    width: 200px;
+    height: 20px;
+    background: linear-gradient(to right, blue, cyan, green, yellow, red);
+    border-radius: 5px;
+}
+
+.legend-low, .legend-high {
+    font-weight: bold;
+    font-size: 0.9rem;
 }

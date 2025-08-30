@@ -451,20 +451,21 @@ function applyFilter(filter) {
         }
     });
 }
-
-// Visualize periodic trends
+// Visualize periodic trends - COLOR VERSION
 function visualizeTrend(trend) {
     const cells = document.querySelectorAll('.element-cell:not(.lanthanide-placeholder):not(.actinide-placeholder)');
     
-    // Clear previous trend classes
+    // Clear previous trend styles
     cells.forEach(cell => {
         cell.classList.remove('heatmap-low', 'heatmap-mid', 'heatmap-high');
+        cell.style.backgroundColor = '';
+        cell.style.boxShadow = '';
     });
     
     // Get valid values for this trend
     const trendValues = elements
         .map(el => el[trend])
-        .filter(val => val !== null && val !== undefined);
+        .filter(val => val !== null && val !== undefined && !isNaN(val));
     
     if (trendValues.length === 0) {
         document.querySelector('.trends-info').textContent = 'No data available for this trend.';
@@ -475,27 +476,26 @@ function visualizeTrend(trend) {
     const maxVal = Math.max(...trendValues);
     const range = maxVal - minVal;
     
-    // Apply heatmap classes
+    // Apply heatmap colors
     elements.forEach(el => {
-        if (el[trend] === null || el[trend] === undefined) return;
+        if (el[trend] === null || el[trend] === undefined || isNaN(el[trend])) return;
         
         const cell = document.querySelector(`.element-cell[data-symbol="${el.symbol}"]`);
         if (!cell) return;
         
         const normalized = (el[trend] - minVal) / range;
         
-        if (normalized < 0.33) {
-            cell.classList.add('heatmap-low');
-        } else if (normalized < 0.66) {
-            cell.classList.add('heatmap-mid');
-        } else {
-            cell.classList.add('heatmap-high');
-        }
+        // Calculate color based on normalized value (blue to red gradient)
+        const hue = (1 - normalized) * 240; // Blue (240) to Red (0)
+        const color = `hsl(${hue}, 80%, 60%)`;
+        
+        // Apply the color with some transparency to keep original category color visible
+        cell.style.backgroundColor = `color-mix(in srgb, ${color} 40%, ${cell.style.backgroundColor || categories[el.category] || '#ccc'})`;
+        cell.style.boxShadow = `0 0 12px ${color}`;
     });
     
     document.querySelector('.trends-info').textContent = `Showing trend for: ${formatCategory(trend.replace('_', ' '))}`;
 }
-
 // Theme functionality
 function toggleTheme() {
     const currentTheme = document.documentElement.dataset.theme;
