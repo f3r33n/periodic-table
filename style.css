@@ -1467,8 +1467,7 @@ h2 {
         position: absolute;
         top: 100%;
         left: 0;
-        background: rgba(10, 10, 26, 0.95);
-        backdrop-filter: blur(10px);
+background: var(--card-bg);        backdrop-filter: blur(10px);
         border-top: 1px solid var(--border-color);
         padding: 1rem 0;
     }
