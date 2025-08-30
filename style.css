@@ -1816,3 +1816,65 @@ h2 {
         gap: 0.3rem;
     }
 }
+/* Reduced motion for better user experience - with preloader exception */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* Keep preloader animations intact */
+    .preloader-orbit,
+    .preloader-content,
+    .preloader-center,
+    .preloader-text {
+        animation-duration: 1.5s !important;
+        animation-iteration-count: infinite !important;
+    }
+    
+    /* Specific element overrides (excluding preloader) */
+    .floating-element,
+    .electron-shell,
+    .magic-sparkle,
+    .title-icon,
+    .title-sparkle,
+    .circle-icon,
+    .circle-btn,
+    .animated-description,
+    .warm-title,
+    .warm-title::before,
+    .title-underline,
+    .element-cell {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    /* Keep essential transforms but remove animations */
+    .element-cell:hover {
+        transform: none;
+    }
+    
+    /* Keep opacity changes but remove animations */
+    .text-part {
+        opacity: 1;
+        transform: none;
+    }
+    
+    /* Ensure content remains visible */
+    .magic-sparkle {
+        opacity: 0.3;
+    }
+    
+    /* Specifically target preloader to maintain its animations */
+    .preloader .preloader-orbit {
+        animation: orbit 1.5s linear infinite !important;
+    }
+    
+    .preloader .preloader-text {
+        animation: pulse 2s infinite !important;
+    }
+}
