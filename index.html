@@ -11,6 +11,22 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+<button class="share-button" id="shareBtn">🔗 Share</button>
+
+<script>
+  document.getElementById("shareBtn").addEventListener("click", async () => {
+    if (navigator.share) {
+      await navigator.share({
+        title: "Magical Periodic Table",
+        text: "Check out this awesome interactive periodic table with cool facts!",
+        url: window.location.href
+      });
+    } else {
+      alert("Sharing is not supported on this browser. Copy the link: " + window.location.href);
+    }
+  });
+</script>
+
 <body>
     
     <div class="preloader">
@@ -152,6 +168,42 @@
                     <div id="quiz-result" class="quiz-result"></div>
                 </div>
             </section>
+<section class="facts-section">
+  <h2>🔬 Did You Know?</h2>
+  <div class="facts-grid" id="factsGrid">
+<script>
+  const facts = [
+    "Hydrogen is the most abundant element in the universe.",
+    "Helium was first discovered in the Sun before being found on Earth.",
+    "Gold is the most malleable metal – it can be beaten into sheets thin enough to see through.",
+    "Mercury is the only metal that is liquid at room temperature.",
+    "Carbon is the basis for all known life on Earth.",
+    "Oxygen makes up about 21% of Earth’s atmosphere.",
+    "Platinum is more rare than gold and highly resistant to corrosion.",
+    "Sodium reacts violently with water, producing hydrogen gas.",
+    "Uranium was used as a coloring agent in ancient Roman glass.",
+    "Silicon is the second most abundant element in Earth's crust.",
+    "Iron is the main component of Earth’s core and gives blood its red color.",
+    "Chlorine was used as the first chemical weapon in WWI.",
+    "Aluminum is the most abundant metal in the Earth’s crust.",
+    "Lithium is used in rechargeable batteries that power your phone.",
+    "Copper was the first metal used by humans over 10,000 years ago."
+  ];
+
+  const factsGrid = document.getElementById("factsGrid");
+
+  // Shuffle & pick 6 random facts
+  const shuffled = facts.sort(() => 0.5 - Math.random()).slice(0, 6);
+
+  shuffled.forEach(fact => {
+    const card = document.createElement("div");
+    card.className = "fact-card";
+    card.innerHTML = `<p>${fact}</p>`;
+    factsGrid.appendChild(card);
+  });
+</script>
+  </div>
+</section>
 
             <section id="about" class="about-section">
                 <h2>About the Periodic Table</h2>
