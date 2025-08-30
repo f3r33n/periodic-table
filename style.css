@@ -447,22 +447,16 @@ h2 {
 
 .periodic-table-grid {
     display: grid;
-    grid-template-columns: repeat(18, minmax(60px, 1fr));
+    grid-template-columns: repeat(18, 80px); /* always 18 columns */
+    grid-auto-rows: 80px;
     grid-gap: 4px;
-    justify-content: center;
-    margin: 0 auto;
-    position: relative;
+    justify-content: start;  /* align left */
 }
-@media (max-width: 768px) {
-    .periodic-table-grid {
-        grid-template-columns: repeat(9, minmax(40px, 1fr));
-    }
+
+.periodic-table-container {
+    overflow-x: auto;  /* allow horizontal scroll */
 }
-@media (max-width: 480px) {
-    .periodic-table-grid {
-        grid-template-columns: repeat(5, minmax(35px, 1fr));
-    }
-}
+
 
 .element-cell {
     position: relative;
