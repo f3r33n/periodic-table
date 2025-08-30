@@ -415,17 +415,23 @@ function handleSearch(e) {
     const searchTerm = e.target.value.toLowerCase().trim();
     const cells = document.querySelectorAll('.element-cell:not(.lanthanide-placeholder):not(.actinide-placeholder)');
     
+    // Show all cells if search is empty
+    if (!searchTerm) {
+        cells.forEach(cell => cell.classList.remove('hidden'));
+        return;
+    }
+    
     cells.forEach(cell => {
-        if (!searchTerm) {
-            cell.classList.remove('hidden');
-            return;
-        }
+        const name = cell.dataset.name || '';
+        const symbol = cell.dataset.symbol ? cell.dataset.symbol.toLowerCase() : '';
+        const number = cell.dataset.number || '';
         
-        const name = cell.dataset.name;
-        const symbol = cell.dataset.symbol.toLowerCase();
-        const number = cell.dataset.number;
+        // Check if search term matches any property
+        const matches = name.includes(searchTerm) || 
+                       symbol.includes(searchTerm) || 
+                       number.includes(searchTerm);
         
-        if (name.includes(searchTerm) || symbol.includes(searchTerm) || number === searchTerm) {
+        if (matches) {
             cell.classList.remove('hidden');
         } else {
             cell.classList.add('hidden');
