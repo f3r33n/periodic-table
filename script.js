@@ -639,3 +639,110 @@ function addSearchClearButton() {
 
 // Call this function after DOM is loaded
 document.addEventListener('DOMContentLoaded', addSearchClearButton);
+// Timeline data - grouped by century
+const timelineData = {
+    "18": [
+        {symbol: "H", name: "Hydrogen", year: 1766, discoverer: "Henry Cavendish", details: "Discovered through experiments with acids and metals."},
+        {symbol: "O", name: "Oxygen", year: 1774, discoverer: "Joseph Priestley", details: "Discovered by heating mercury oxide."},
+        {symbol: "N", name: "Nitrogen", year: 1772, discoverer: "Daniel Rutherford", details: "Discovered as a component of air."}
+    ],
+    "19": [
+        {symbol: "Na", name: "Sodium", year: 1807, discoverer: "Humphry Davy", details: "Isolated by electrolysis of sodium hydroxide."},
+        {symbol: "Ca", name: "Calcium", year: 1808, discoverer: "Humphry Davy", details: "Discovered through electrolysis of lime."},
+        {symbol: "Al", name: "Aluminum", year: 1825, discoverer: "Hans Christian Ørsted", details: "First isolated by reducing aluminum chloride."}
+    ],
+    "20": [
+        {symbol: "Ra", name: "Radium", year: 1898, discoverer: "Marie Curie", details: "Discovered in pitchblende ore."},
+        {symbol: "Ne", name: "Neon", year: 1898, discoverer: "William Ramsay", details: "Discovered through fractional distillation of liquid air."},
+        {symbol: "Pu", name: "Plutonium", year: 1940, discoverer: "Glenn T. Seaborg", details: "Synthesized by deuteron bombardment of uranium."}
+    ],
+    "21": [
+        {symbol: "Nh", name: "Nihonium", year: 2004, discoverer: "RIKEN team", details: "Synthesized by bombarding bismuth with zinc ions."},
+        {symbol: "Mc", name: "Moscovium", year: 2003, discoverer: "JINR team", details: "Created by bombarding americium with calcium."},
+        {symbol: "Og", name: "Oganesson", year: 2002, discoverer: "JINR team", details: "Synthesized by bombarding californium with calcium."}
+    ]
+};
+
+// Initialize timeline
+function initTimeline() {
+    const grid = document.getElementById('timeline-grid');
+    const filterButtons = document.querySelectorAll('.timeline-filters .filter-btn');
+    const modal = document.getElementById('timeline-modal');
+    const closeBtn = document.querySelector('.timeline-close-btn');
+    
+    // Load all elements initially
+    loadTimelineItems('all');
+    
+    // Filter event listeners
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadTimelineItems(btn.dataset.century);
+        });
+    });
+    
+    // Modal close
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+}
+
+// Load timeline items based on filter
+function loadTimelineItems(century) {
+    const grid = document.getElementById('timeline-grid');
+    grid.innerHTML = '';
+    
+    let items = [];
+    
+    if (century === 'all') {
+        // Combine all centuries
+        for (const cent in timelineData) {
+            items = items.concat(timelineData[cent]);
+        }
+    } else {
+        items = timelineData[century] || [];
+    }
+    
+    // Sort by year
+    items.sort((a, b) => a.year - b.year);
+    
+    // Create timeline items
+    items.forEach(item => {
+        const timelineItem = document.createElement('div');
+        timelineItem.className = 'timeline-item';
+        timelineItem.innerHTML = `
+            <div class="element-symbol">${item.symbol}</div>
+            <div class="element-name">${item.name}</div>
+            <div class="discovery-year">${item.year}</div>
+        `;
+        
+        timelineItem.addEventListener('click', () => {
+            showTimelineDetails(item);
+        });
+        
+        grid.appendChild(timelineItem);
+    });
+}
+
+// Show timeline details
+function showTimelineDetails(item) {
+    const modal = document.getElementById('timeline-modal');
+    const details = document.getElementById('timeline-details');
+    
+    details.innerHTML = `
+        <h3>${item.name} (${item.symbol})</h3>
+        <p><strong>Discovered in:</strong> ${item.year}</p>
+        <p><strong>Discoverer:</strong> ${item.discoverer}</p>
+        <p><strong>Details:</strong> ${item.details}</p>
+    `;
+    
+    modal.style.display = 'flex';
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', initTimeline);
