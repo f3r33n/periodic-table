@@ -39,6 +39,17 @@
                 </button>
             </div>
         </nav>
+<!-- Mobile menu (hidden by default, shown on small screens) -->
+<div class="mobile-menu">
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#periodic-table">Table</a></li>
+    <li><a href="#trends">Trends</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#footer">Contact</a></li>
+  </ul>
+</div>
 
         <main class="main-content">
             <section id="home" class="hero-section active-section">
@@ -59,20 +70,61 @@
             <section id="periodic-table" class="periodic-table-section">
                 <h2>Interactive Periodic Table</h2>
                 <div class="controls">
-                    <input type="text" id="element-search" placeholder="Search element by name or symbol..." aria-label="Search for an element by name or symbol">
-                    <div class="filter-controls">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="alkali-metal">Alkali Metals</button>
-                        <button class="filter-btn" data-filter="alkaline-earth-metal">Alkaline Earth</button>
-                        <button class="filter-btn" data-filter="transition-metal">Transition Metals</button>
-                        <button class="filter-btn" data-filter="post-transition-metal">Post-Transition</button>
-                        <button class="filter-btn" data-filter="metalloid">Metalloids</button>
-                        <button class="filter-btn" data-filter="nonmetal">Nonmetals</button>
-                        <button class="filter-btn" data-filter="halogen">Halogens</button>
-                        <button class="filter-btn" data-filter="noble-gas">Noble Gases</button>
-                        <button class="filter-btn" data-filter="lanthanide">Lanthanides</button>
-                        <button class="filter-btn" data-filter="actinide">Actinides</button>
-                    </div>
+<!-- REPLACE your current search input with this -->
+<div class="search-container">
+    <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="element-search" placeholder="Search elements by name, symbol, or number..." 
+               aria-label="Search for elements" class="search-input">
+        <div class="search-underline"></div>
+    </div>
+</div><!-- REPLACE your current filter-controls div with this -->
+<div class="filter-controls">
+    <button class="filter-btn circle-btn active" data-filter="all">
+        <span class="circle-icon">⚛️</span>
+        <span class="circle-text">All</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="alkali-metal">
+        <span class="circle-icon">🔥</span>
+        <span class="circle-text">Alkali Metals</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="alkaline-earth-metal">
+        <span class="circle-icon">🌋</span>
+        <span class="circle-text">Alkaline Earth</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="transition-metal">
+        <span class="circle-icon">⚔️</span>
+        <span class="circle-text">Transition Metals</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="post-transition-metal">
+        <span class="circle-icon">🔩</span>
+        <span class="circle-text">Post-Transition</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="metalloid">
+        <span class="circle-icon">✨</span>
+        <span class="circle-text">Metalloids</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="nonmetal">
+        <span class="circle-icon">💨</span>
+        <span class="circle-text">Nonmetals</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="halogen">
+        <span class="circle-icon">☣️</span>
+        <span class="circle-text">Halogens</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="noble-gas">
+        <span class="circle-icon">🎈</span>
+        <span class="circle-text">Noble Gases</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="lanthanide">
+        <span class="circle-icon">⭐</span>
+        <span class="circle-text">Lanthanides</span>
+    </button>
+    <button class="filter-btn circle-btn" data-filter="actinide">
+        <span class="circle-icon">☢️</span>
+        <span class="circle-text">Actinides</span>
+    </button>
+</div>
                 </div>
                 <div class="periodic-table-container">
                     <div class="periodic-table-grid" id="periodic-table-grid">

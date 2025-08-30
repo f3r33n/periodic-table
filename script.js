@@ -614,4 +614,28 @@ function scrollToSection(sectionId) {
         navLinks.classList.remove('active');
     }
 }
-3
+// Add clear button functionality
+function addSearchClearButton() {
+    const searchContainer = document.querySelector('.search-box');
+    const clearButton = document.createElement('button');
+    clearButton.className = 'search-clear';
+    clearButton.innerHTML = '<i class="fas fa-times"></i>';
+    clearButton.setAttribute('aria-label', 'Clear search');
+    
+    clearButton.addEventListener('click', () => {
+        elementSearch.value = '';
+        elementSearch.focus();
+        handleSearch({ target: elementSearch });
+        clearButton.style.display = 'none';
+    });
+    
+    searchContainer.appendChild(clearButton);
+    
+    // Show/hide clear button based on input content
+    elementSearch.addEventListener('input', (e) => {
+        clearButton.style.display = e.target.value ? 'block' : 'none';
+    });
+}
+
+// Call this function after DOM is loaded
+document.addEventListener('DOMContentLoaded', addSearchClearButton);
