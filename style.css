@@ -1646,8 +1646,7 @@ h2 {
 
 @media (min-width: 769px) {
   .mobile-menu { display: none !important; }
-}
-/* Floating Elements Background */
+}/* Floating Elements Background */
 .floating-background {
   position: fixed;
   top: 0;
@@ -1659,6 +1658,7 @@ h2 {
   overflow: hidden;
 }
 
+/* Floating element style */
 .floating-element {
   position: absolute;
   width: 50px;
@@ -1670,14 +1670,26 @@ h2 {
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
   font-size: 1.2rem;
-  color: white;
-  animation: float 5s ease-in-out infinite;
-  box-shadow: 0 0 15px currentColor;
+
+  /* Dimmer colors */
+  color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+
   /* Start in the center */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  animation: float 15s ease-in-out infinite;
 }
+
+/* Floating animation */
+@keyframes float {
+  0%   { transform: translate(-50%, -50%) translate(0, 0); }
+  50%  { transform: translate(-50%, -50%) translate(100px, -80px); }
+  100% { transform: translate(-50%, -50%) translate(-120px, 90px); }
+}
+
 
 .floating-element:nth-child(1) { 
   background-color: var(--nonmetal); 
