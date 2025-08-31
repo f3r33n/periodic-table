@@ -646,22 +646,38 @@ const timelineData = {
         {symbol: "O", name: "Oxygen", year: 1774, discoverer: "Joseph Priestley", details: "Discovered by heating mercury oxide."},
         {symbol: "N", name: "Nitrogen", year: 1772, discoverer: "Daniel Rutherford", details: "Discovered as a component of air."}
     ],
+    
     "19": [
+    {symbol: "K", name: "Potassium", year: 1807, discoverer: "Humphry Davy", details: "Isolated by electrolysis of molten potassium hydroxide."},
+    {symbol: "Mg", name: "Magnesium", year: 1808, discoverer: "Humphry Davy", details: "Discovered through electrolysis of magnesia."},
+    {symbol: "B", name: "Boron", year: 1808, discoverer: "Joseph Louis Gay-Lussac", details: "Isolated by reducing boric acid with potassium."},
+
         {symbol: "Na", name: "Sodium", year: 1807, discoverer: "Humphry Davy", details: "Isolated by electrolysis of sodium hydroxide."},
         {symbol: "Ca", name: "Calcium", year: 1808, discoverer: "Humphry Davy", details: "Discovered through electrolysis of lime."},
         {symbol: "Al", name: "Aluminum", year: 1825, discoverer: "Hans Christian Ørsted", details: "First isolated by reducing aluminum chloride."}
     ],
     "20": [
+        {symbol: "Fr", name: "Francium", year: 1939, discoverer: "Marguerite Perey", details: "Discovered as a decay product of actinium."},
+        {symbol: "Tc", name: "Technetium", year: 1937, discoverer: "Carlo Perrier", details: "First artificially produced element, created by bombarding molybdenum with deuterons."},
+        {symbol: "Pm", name: "Promethium", year: 1945, discoverer: "Jacob Marinsky", details: "Discovered in the fission products of uranium."},
         {symbol: "Ra", name: "Radium", year: 1898, discoverer: "Marie Curie", details: "Discovered in pitchblende ore."},
         {symbol: "Ne", name: "Neon", year: 1898, discoverer: "William Ramsay", details: "Discovered through fractional distillation of liquid air."},
         {symbol: "Pu", name: "Plutonium", year: 1940, discoverer: "Glenn T. Seaborg", details: "Synthesized by deuteron bombardment of uranium."}
     ],
     "21": [
+    {symbol: "Cn", name: "Copernicium", year: 1996, discoverer: "GSI team", details: "Created by fusing lead and zinc nuclei."},
+    
         {symbol: "Nh", name: "Nihonium", year: 2004, discoverer: "RIKEN team", details: "Synthesized by bombarding bismuth with zinc ions."},
         {symbol: "Mc", name: "Moscovium", year: 2003, discoverer: "JINR team", details: "Created by bombarding americium with calcium."},
-        {symbol: "Og", name: "Oganesson", year: 2002, discoverer: "JINR team", details: "Synthesized by bombarding californium with calcium."}
-    ]
+        {symbol: "Og", name: "Oganesson", year: 2002, discoverer: "JINR team", details: "Synthesized by bombarding californium with calcium."},
+
+    {symbol: "Fl", name: "Flerovium", year: 1999, discoverer: "JINR team", details: "Synthesized by bombarding plutonium with calcium ions."},
+ {symbol: "Lv", name: "Livermorium", year: 2000, discoverer: "JINR-Lawrence Livermore collaboration", details: "Produced by fusing curium and calcium nuclei."},
+        {symbol: "Uue", name: "Ununennium", year: null, discoverer: "Not yet discovered", details: "Predicted element, synthesis attempts ongoing."},
+    {symbol: "Ubn", name: "Unbinilium", year: null, discoverer: "Not yet discovered", details: "Predicted element, synthesis not yet achieved."}
+],
 };
+
 
 // Initialize timeline
 function initTimeline() {
